@@ -1,6 +1,6 @@
-# m3u8-player
+# ClipsPlayer
 
-M3U8 Player in browser. Play any live stream m3u8 link with this webapp at https://bharadwajpro.github.io/m3u8-player
+Clips Player in browser. Play any live stream m3u8 link with this webapp at https://worklt.tech/clipsplayer
 
 I created this website because VLC is unstable in playing live streams. It buffers a lot.
 
