@@ -1,6 +1,6 @@
 # ClipsPlayer
 
-Clips Player in browser. Play any live stream m3u8 link with this webapp at https://worklt.tech/clipsplayer
+Clips Player in browser. Play any live stream video link with this webapp at https://worklt.tech/clipsplayer
 
 I created this website because VLC is unstable in playing live streams. It buffers a lot.
 

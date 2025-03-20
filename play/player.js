@@ -1,23 +1,35 @@
 var video = document.getElementById('video');
 
+// Check if the URL is a video link
+function isVideoUrl(url) {
+    const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv', '.flv', '.wmv', '.m3u8'];
+    const lowerCaseUrl = url.toLowerCase();
+    return videoExtensions.some(ext => lowerCaseUrl.endsWith(ext));
+}
+
 function playM3u8(url) {
-    if (Hls.isSupported()) {
-        video.volume = 0.3;
-        var hls = new Hls();
-        var m3u8Url = decodeURIComponent(url);
-        hls.loadSource(m3u8Url);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-            video.play();
-        });
-        // document.title = url;
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = url;
-        video.addEventListener('canplay', function () {
-            video.play();
-        });
-        video.volume = 0.3;
-        // document.title = url;
+    if (isVideoUrl(url)) {
+        if (Hls.isSupported() && url.endsWith('.m3u8')) {
+            video.volume = 0.3;
+            var hls = new Hls();
+            var m3u8Url = decodeURIComponent(url);
+            hls.loadSource(m3u8Url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            });
+            // document.title = url;
+     // } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        } else {
+            video.src = url;
+            video.addEventListener('canplay', function () {
+                video.play();
+            });
+            video.volume = 0.3;
+            // document.title = url;
+        }
+    } else {
+        console.error('After # URL is NOT valid video URL');
     }
 }
 
@@ -56,6 +68,7 @@ function vidFullscreen() {
 }
 
 playM3u8(window.location.href.split('#')[1]);
+
 $(window).on('load', function () {
     $('#video').on('click', function () {
         this.paused ? this.play() : this.pause();
