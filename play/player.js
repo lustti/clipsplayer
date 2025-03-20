@@ -2,7 +2,7 @@ var video = document.getElementById('video');
 
 // Check if the URL is a video link
 function isVideoUrl(url) {
-    const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv', '.flv', '.wmv', '.m3u8'];
+    const videoExtensions = ['.mp4', '.webm', '.m3u8'];
     const lowerCaseUrl = url.toLowerCase();
     return videoExtensions.some(ext => lowerCaseUrl.endsWith(ext));
 }
@@ -29,7 +29,7 @@ function playM3u8(url) {
             // document.title = url;
         }
     } else {
-        console.error('After # URL is NOT valid video URL');
+        console.error('After # URL is NOT valid Supported (.mp4,.webm,.m3u8)video URL');
     }
 }
 

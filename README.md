@@ -1,6 +1,11 @@
 # ClipsPlayer
 
-Clips Player in browser. Play any live stream video link with this webapp at https://worklt.tech/clipsplayer
+Clips Player in browser. Play common live stream video link with this webapp at https://worklt.tech/clipsplayer
+
+Now support video formates -
+-   m3u8 -> stream video
+-   mp4
+-   webm
 
 I created this website because VLC is unstable in playing live streams. It buffers a lot.
 
