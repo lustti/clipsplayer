@@ -10,7 +10,7 @@ function isVideoUrl(url) {
 function playM3u8(url) {
     if (isVideoUrl(url)) {
         if (Hls.isSupported() && url.endsWith('.m3u8')) {
-            video.volume = 0.3;
+            // video.volume = 0.3;
             var hls = new Hls();
             var m3u8Url = decodeURIComponent(url);
             hls.loadSource(m3u8Url);
@@ -25,7 +25,7 @@ function playM3u8(url) {
             video.addEventListener('canplay', function () {
                 video.play();
             });
-            video.volume = 0.3;
+            // video.volume = 0.3;
             // document.title = url;
         }
     } else {
