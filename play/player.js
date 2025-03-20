@@ -29,7 +29,7 @@ function playM3u8(url) {
             // document.title = url;
         }
     } else {
-        alert('After # URL is NOT valid Supported (.mp4,.webm,.m3u8) video URL');
+        alert('Video URL is NOT valid Supported (.mp4,.webm,.m3u8) video URL');
         console.error('Video URL is NOT valid Supported (.mp4,.webm,.m3u8) video URL');
         window.history.back();
     }
@@ -72,14 +72,14 @@ function vidFullscreen() {
 playM3u8(window.location.href.split('#')[1]);
 
 $(window).on('load', function () {
-    $('#video').on('click', function () {
-        this.paused ? this.play() : this.pause();
-    });
-    Mousetrap.bind('space', playPause);
+    // $('#video').on('click', function () {
+    //     this.paused ? this.play() : this.pause();
+    // });
+    // Mousetrap.bind('space', playPause);
     Mousetrap.bind('up', volumeUp);
     Mousetrap.bind('down', volumeDown);
     Mousetrap.bind('right', seekRight);
     Mousetrap.bind('left', seekLeft);
-    Mousetrap.bind('f', vidFullscreen);
+    Mousetrap.bind('enter', vidFullscreen);
     Mousetrap.bind('m', toggleMute);
 });
