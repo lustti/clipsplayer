@@ -29,7 +29,9 @@ function playM3u8(url) {
             // document.title = url;
         }
     } else {
-        console.error('After # URL is NOT valid Supported (.mp4,.webm,.m3u8)video URL');
+        alert('After # URL is NOT valid Supported (.mp4,.webm,.m3u8) video URL');
+        console.error('Video URL is NOT valid Supported (.mp4,.webm,.m3u8) video URL');
+        window.history.back();
     }
 }
 
