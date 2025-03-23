@@ -32,12 +32,13 @@ function playVideo(video_url) {
                     video.src = url;
                 } else {
                     art.notice.show = '不支持播放m3u8格式';
+                    window.history.back();
                 }
             }
         },
 
     });
-    Artplayer.CONTEXTMENU = false;
+    Artplayer.CONTEXTMENU = true;
 
 }
 

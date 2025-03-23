@@ -18,8 +18,9 @@ window.addEventListener('load', function () {
         localStorage.setItem('m3u8-link', input.value);
         window.location.href = './play' + '#' + input.value;
     });
+
     artplayButton.addEventListener('click', function () {
-        console.log('Play button clicked');
+        console.log('ArtPlay button clicked');
         localStorage.setItem('m3u8-link', input.value);
         window.location.href = './artplay' + '#' + input.value;
     });
