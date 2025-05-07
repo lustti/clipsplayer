@@ -5,7 +5,7 @@ function playVideo(video_url) {
     var art = new Artplayer({
         container: '.artplayer-app',
         url: video_url,
-        poster: './assets/imgs/poster.jpeg',
+        poster: '../assets/imgs/poster.jpeg',
         autoplay: true,
         pip: true,
         screenshot: true,
