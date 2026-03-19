@@ -1,4 +1,4 @@
-const video_player = document.getElementById('player');
+var video = document.getElementById('video');
 
 // Check if the URL is a video link
 function isVideoUrl(url) {
@@ -7,35 +7,23 @@ function isVideoUrl(url) {
     return videoExtensions.some(ext => lowerCaseUrl.endsWith(ext));
 }
 
-async function playM3u8(url) {
+function playM3u8(url) {
     if (isVideoUrl(url)) {
         if (Hls.isSupported() && url.endsWith('.m3u8')) {
             // video.volume = 0.3;
             var hls = new Hls();
             var m3u8Url = decodeURIComponent(url);
-            var noadsMu3u8Text = await window.removeM3u8Ads(m3u8Url);
-            // 创建 Blob 并生成 URL
-            const blob = new Blob([noadsMu3u8Text], { type: 'application/x-mpegURL' });
-            console.log(noadsMu3u8Text);
-            const noadsUrl = URL.createObjectURL(blob);
-            console.log(noadsUrl.replace("blob:", ""));
-            hls.loadSource(noadsUrl);
-            hls.attachMedia(video_player);
-            try {
-                hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                    video_player.play();
-                });
-            } catch (error) {
-                console.error('Error loading manifest:', error);
-            }
-            // video_player.src = noadsUrl;
-            // video_player.addEventListener('canplay', function () {
-            //     video_player.play();
-            // });
+            hls.loadSource(m3u8Url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            });
+            // document.title = url;
+     // } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         } else {
-            video_player.src = url;
-            video_player.addEventListener('canplay', function () {
-                video_player.play();
+            video.src = url;
+            video.addEventListener('canplay', function () {
+                video.play();
             });
             // video.volume = 0.3;
             // document.title = url;

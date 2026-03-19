@@ -1,7 +1,17 @@
 // Check if the URL is a video link
 
 
-function playVideo(video_url) {
+async function playVideo(video_url) {
+    // 创建 Blob 并生成 URL
+    if (video_url.endsWith('.m3u8')) {
+        var m3u8Url = decodeURIComponent(video_url);
+        var noadsMu3u8Text = await window.removeM3u8Ads(m3u8Url);
+        // video.volume = 0.3;
+        const blob = new Blob([noadsMu3u8Text], { type: 'application/x-mpegURL' });
+        console.log(noadsMu3u8Text);
+        const noadsUrl = URL.createObjectURL(blob);
+        video_url = noadsUrl;
+    }
     var art = new Artplayer({
         container: '.artplayer-app',
         url: video_url,
