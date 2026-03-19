@@ -17,8 +17,15 @@ body {
     justify-content: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: url(/assets/default.cur), auto !important;
     height: 100%;
+}
+
+#text-box {
+    position:fixed;
+    top: 30%;
+    left: 10%;
+    width:80%;
+    height:100%;
 }
 
 .navbar-toggler {

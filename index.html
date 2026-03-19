@@ -6,26 +6,55 @@
     <title>Clips Player</title>
     <!-- <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script> -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="assets/css/home.css" />
+    <script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script type="text/javascript" src="assets/js/main.js"></script>
 </head>
 
 <body>
-    <div class="col-lg-6" id="text-box">
+    <div class="container-fluid justify-content-center gap-1 w-80" id="text-box">
         <h1 class="page-name">Clips Player</h1>
-        <p>
-            Clips Player supports "<b><i>.mp4, .webm, .m3u8</i></b>" video url.
-        </p>
 
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Paste the video link here" id="m3u8-placeholder" />
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" id="play-btn">Play</button>
-            </span>
-            <span class="input-group-btn">
-                <button class="btn btn-dark" type="button" id="artplay-btn">ArtPlay</button>
-            </span>
+        <hr class="border border-black" />
+        <form>
+            <div class="input-group mb-3 border border-primary border-2 rounded-3">
+                <span class="input-group-text" id="basic-addon1">Video</span>
+                <input type="text" class="form-control " placeholder="Paste the video link here" id="video-placeholder"
+                    aria-label="Paste the video link here" aria-describedby="basic-addon1">
+
+            </div>
+            <p style="text-align: right;">
+                Clips Player supports video: "<b><i> .mp4, .webm, .m3u8 </i></b>".
+            </p>
+            <div class="input-group mb-3 border border-info border-2 rounded-3 pb-0 mb-0">
+                <span class="input-group-text" id="basic-addon1">Subtitle</span>
+                <input type="text" class="form-control " placeholder="Paste the subtitle link here"
+                    id="subtitle-placeholder" aria-label="Paste the subtitle link here" aria-describedby="basic-addon1">
+            </div>
+            <p class="m-0 p-0" style="text-align: right;">
+                Clips Player supports subtitle: " <b><i>.vtt, .srt</i></b> ".
+            </p>
+        </form>
+        <hr class="border border-dark" />
+        <div class="hstack gap-3">
+            <div class="input-group d-flex justify-content-start flex-col gap-1 m-2">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" id="play-btn">Play</button>
+                </span>
+
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" id="videojs-btn">VideoJS</button>
+                </span>
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="button" id="jsmpeg-btn">JSMpeg</button>
+                </span>
+            </div>
+            <div class="vr border border-danger"></div>
+            <div class="input-group d-flex justify-content-end flex-col gap-1 m-2">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button" id="artplayer-btn">ArtPlayer</button>
+                </span>
+            </div>
         </div>
     </div>
 </body>
