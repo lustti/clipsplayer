@@ -35,22 +35,7 @@ window.addEventListener('load', function () {
         window.location.href = './play' + '#' + url;
 
     });
-    // videojs
-    videojsButton.addEventListener('click', function () {
-        console.log('VideoJS button clicked');
-        let url = input.value;
-        localStorage.setItem('video-link', url);
-        window.location.href = './videojs' + '#' + url;
 
-    });
-    // jsmpeg
-    jsmpegButton.addEventListener('click', function () {
-        console.log('JSMpeg button clicked');
-        let url = input.value;
-        localStorage.setItem('video-link', url);
-        window.location.href = './jsmpeg' + '#' + url;
-
-    });
     // artplayer
     artplayerButton.addEventListener('click', function () {
         console.log('ArtPlayer button clicked');

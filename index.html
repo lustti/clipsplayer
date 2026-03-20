@@ -20,40 +20,26 @@
         <form>
             <div class="input-group mb-3 border border-primary border-2 rounded-3">
                 <span class="input-group-text" id="basic-addon1">Video</span>
-                <input type="text" class="form-control " placeholder="Paste the video link here" id="video-placeholder"
+                <input type="text" class="form-control " placeholder="Paste the video link here, supports video: mp4, .webm, .m3u8." id="video-placeholder"
                     aria-label="Paste the video link here" aria-describedby="basic-addon1">
-
             </div>
-            <p style="text-align: right;">
-                Clips Player supports video: "<b><i> .mp4, .webm, .m3u8 </i></b>".
-            </p>
             <div class="input-group mb-3 border border-info border-2 rounded-3 pb-0 mb-0">
                 <span class="input-group-text" id="basic-addon1">Subtitle</span>
-                <input type="text" class="form-control " placeholder="Paste the subtitle link here"
+                <input type="text" class="form-control " placeholder="Paste the subtitle link here, support subtitle: .vtt, .srt."
                     id="subtitle-placeholder" aria-label="Paste the subtitle link here" aria-describedby="basic-addon1">
             </div>
-            <p class="m-0 p-0" style="text-align: right;">
-                Clips Player supports subtitle: " <b><i>.vtt, .srt</i></b> ".
-            </p>
         </form>
         <hr class="border border-dark" />
         <div class="hstack gap-3">
             <div class="input-group d-flex justify-content-start flex-col gap-1 m-2">
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button" id="play-btn">Play</button>
-                </span>
-
-                <span class="input-group-btn">
-                    <button class="btn btn-success" type="button" id="videojs-btn">VideoJS</button>
-                </span>
-                <span class="input-group-btn">
-                    <button class="btn btn-info" type="button" id="jsmpeg-btn">JSMpeg</button>
+                    <button class="btn btn-success" type="button" id="play-btn">Play</button>
                 </span>
             </div>
             <div class="vr border border-danger"></div>
             <div class="input-group d-flex justify-content-end flex-col gap-1 m-2">
                 <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button" id="artplayer-btn">ArtPlayer</button>
+                    <button class="btn btn-danger" type="button" id="artplayer-btn">ArtPlayer</button>
                 </span>
             </div>
         </div>

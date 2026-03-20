@@ -13,7 +13,7 @@ async function playM3u8(url) {
             // video.volume = 0.3;
             var hls = new Hls();
             var m3u8Url = decodeURIComponent(url);
-            var noadsMu3u8Text = await window.removeM3u8Ads(m3u8Url);
+            var noadsMu3u8Text = await removeM3u8Ads(m3u8Url);
             // 创建 Blob 并生成 URL
             const blob = new Blob([noadsMu3u8Text], { type: 'application/x-mpegURL' });
             console.log(noadsMu3u8Text);

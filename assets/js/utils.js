@@ -1,29 +1,36 @@
 // remove m3u8 ads
-window.removeM3u8Ads = async function removeM3u8Ads(m3u8Url) {
+async function removeM3u8Ads(m3u8Url) {
     try {
         // 获取 m3u8 文件内容
         const response = await fetch(m3u8Url);
         if (!response.ok) {
             throw new Error(`Failed to fetch m3u8: ${response.status}`);
         }
-
-        const headUrl = m3u8Url.split("/").slice(0, 3).join("/");
+        const url_slices = m3u8Url.split("/");
+        const headUrl = url_slices.slice(0, 3).join("/");
+        const headParentUrl = url_slices.slice(0, -1).join("/") + "/";
         const m3u8Lines = (await response.text()).split('\n');
-
+        let hlsM3u8Url = headUrl;
         for (let i = 0; i < m3u8Lines.length; i++) {
             const line = m3u8Lines[i].trim();
-            if (line.startsWith('/')) {
-                hls_m3u8_url = headUrl + line;
+            if (!line.startsWith('#')) {
+                if (!line.startsWith('/')) hlsM3u8Url = headParentUrl;
+                hlsM3u8Url = hlsM3u8Url + line;
+                console.log("hls m3u8 url:", hlsM3u8Url);
                 break;
             }
         }
 
-        // 获取 hls m3u8 文件内容
-        const hls_m3u8_response = await fetch(hls_m3u8_url);
-        if (!hls_m3u8_response.ok) {
-            throw new Error(`Failed to fetch hls m3u8: ${hls_m3u8_response.status}`);
+        if (hlsM3u8Url === headUrl) {
+            throw new Error(`Failed to find hls m3u8 url: ${line}`);
         }
-        const hls_m3u8Content = await hls_m3u8_response.text();
+
+        // 获取 hls m3u8 文件内容
+        const hlsM3u8Response = await fetch(hlsM3u8Url);
+        if (!hlsM3u8Response.ok) {
+            throw new Error(`Failed to fetch hls m3u8: ${hlsM3u8Response.status}`);
+        }
+        const hls_m3u8Content = await hlsM3u8Response.text();
 
         // 解析并过滤 hls m3u8 内容
         const hlsM3u8Lines = hls_m3u8Content.split('\n');
@@ -48,7 +55,7 @@ window.removeM3u8Ads = async function removeM3u8Ads(m3u8Url) {
             line = line.trim(); // 移除首尾空白字符
 
             if (line.startsWith("#")) {
-                if (line.startsWith("#EXT-X-DISCONTINUITY")) {
+                if (line.startsWith("#EXT-X-DISCONTINUITY") || line.startsWith("#EXT-X-ENDLIST")) {
                     // 遇到分片分隔符，保存当前 playlist 并重置
                     if (playlist.lines.length > 0) {
                         // 深拷贝 playlist 避免引用问题（Python 的 copy() 对应）
@@ -61,8 +68,16 @@ window.removeM3u8Ads = async function removeM3u8Ads(m3u8Url) {
                     };
                 } else if (line.startsWith("#EXT-X-KEY:")) {
                     // 处理密钥行，替换 URI 前缀
+                    let modify_line = line
+                    if (line.includes("URI=\"")) {
+                        modify_line = line.replace('URI=\"/', `URI="${headUrl}/`);
+                    } else if (line.startsWith("http://") || line.startsWith("https://")) {
+                        modify_line = line;
+                    } else {
+                        modify_line = headParentUrl + line;
+                    }
                     playlist = {
-                        lines: [line.replace('URI="/', `URI="${headUrl}/`)],
+                        lines: [modify_line],
                         duration: 0,
                         linePrefix: ""
                     };
@@ -82,11 +97,14 @@ window.removeM3u8Ads = async function removeM3u8Ads(m3u8Url) {
                 }
                 continue; // 跳过后续逻辑，处理下一行
             }
-
-            // 处理非注释行（媒体文件链接）
-            if (line.startsWith("/")) {
+            else if (line.startsWith("/")) {
                 // 更新本地链接为完整 URL
                 hlsM3u8Lines[index] = headUrl + line;
+            } else if (line.startsWith("http://") || line.startsWith("https://")) {
+                hlsM3u8Lines[index] = line;
+            }
+            else {
+                hlsM3u8Lines[index] = headParentUrl + line;
             }
 
             // 将当前行加入 playlist
@@ -106,6 +124,8 @@ window.removeM3u8Ads = async function removeM3u8Ads(m3u8Url) {
             linePrefixCount[linePrefix]++;
         }
 
+        console.log("playlists count:", Object.keys(linePrefixCount).length);
+
         // 检查是否有有效前缀统计
         if (Object.keys(linePrefixCount).length === 0) {
             statusVar.set("未找到有效的播放列表");
@@ -122,6 +142,7 @@ window.removeM3u8Ads = async function removeM3u8Ads(m3u8Url) {
             }
         }
 
+        console.log("maxKey:", maxKey);
         // 构建无广告的播放列表
         let hlsNoadsLines = [...hlsPlaylist.headLines]; // 浅拷贝头部行
 
@@ -143,3 +164,4 @@ window.removeM3u8Ads = async function removeM3u8Ads(m3u8Url) {
         return m3u8Url; // 出错时返回原始 URL
     }
 }
+
