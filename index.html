@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8" />
@@ -9,27 +9,27 @@
     <script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script type="text/javascript" src="assets/js/main.js"></script>
-    <link rel="icon" href="/assets/favicon.png" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="container-fluid justify-content-center gap-1 w-80" id="text-box">
         <h1 class="page-name">Clips Player</h1>
 
-        <hr class="border border-black" />
+        <hr class="border border-light" />
         <form>
             <div class="input-group mb-3 border border-primary border-2 rounded-3">
-                <span class="input-group-text" id="basic-addon1">Video</span>
-                <input type="text" class="form-control " placeholder="Paste the video link here, supports video: mp4, .webm, .m3u8." id="video-placeholder"
-                    aria-label="Paste the video link here" aria-describedby="basic-addon1">
+                <span class="input-group-text fs-5 fw-bolder bg-primary text-white rounded-2" id="video-label" style="cursor: pointer;">🎬</span>
+                <input type="text" class="form-control border-0" placeholder="Click to paste the video link here, supports video: mp4, .webm, .m3u8." id="video-placeholder"
+                    aria-label="Click to paste the video link here" aria-describedby="video-label">
             </div>
             <div class="input-group mb-3 border border-info border-2 rounded-3 pb-0 mb-0">
-                <span class="input-group-text" id="basic-addon1">Subtitle</span>
-                <input type="text" class="form-control " placeholder="Paste the subtitle link here, support subtitle: .vtt, .srt."
-                    id="subtitle-placeholder" aria-label="Paste the subtitle link here" aria-describedby="basic-addon1">
+                <span class="input-group-text fs-5 fw-bolder bg-info text-white rounded-2" id="subtitle-label" style="cursor: pointer;">🔤</span>
+                <input type="text" class="form-control border-0" placeholder="Click to paste the subtitle link here, support subtitle: .vtt, .srt."
+                    id="subtitle-placeholder" aria-label="Click to paste the subtitle link here" aria-describedby="subtitle-label">
             </div>
         </form>
-        <hr class="border border-dark" />
+        <hr class="border border-light" />
         <div class="hstack gap-3">
             <div class="input-group d-flex justify-content-start flex-col gap-1 m-2">
                 <span class="input-group-btn">
