@@ -38,8 +38,6 @@ window.addEventListener('load', function () {
 
     // play
     const playButton = document.getElementById('play-btn');
-    const videojsButton = document.getElementById('videojs-btn');
-    const jsmpegButton = document.getElementById('jsmpeg-btn');
 
     // players
     const artplayerButton = document.getElementById('artplayer-btn');
