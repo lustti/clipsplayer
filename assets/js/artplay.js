@@ -8,16 +8,23 @@ async function playVideo(video_url) {
         poster: '../assets/imgs/poster.jpeg',
         autoplay: true,
         pip: true,
+        autoSize: true,
+        autoMini: true,
         screenshot: true,
         setting: true,
+        loop: true,
         flip: true,
         playbackRate: true,
         aspectRatio: true,
         fullscreen: true,
+        fullscreenWeb: true,
+        subtitleOffset: true,
+        miniProgressBar: true,
         mutex: true,
         backdrop: true,
         playsInline: true,
         autoPlayback: true,
+        airplay: true,
         theme: '#ffc0cb',
         customType: {
             m3u8: async function playM3u8(video, url, art) {
@@ -45,6 +52,11 @@ async function playVideo(video_url) {
 
     });
     Artplayer.CONTEXTMENU = true;
+
+    art.on('ready', () => {
+        // 设置为网页全屏
+        art.fullscreenWeb = true;
+    });
 
 }
 
